@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /*幅・高さにパディングとマージンを含み、直感的なサイズ調整ができる。*/
+    font-family: "Courier Prime", monospace;
+}
+/* *=すべての要素。font-familyのやつがgoogle fontのやつ。*/
+
+body {
+    display: flex;
+    /*列と行で指定*/
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    /*13が縦、14が横*/
+    background-color: #202020;
+}
+.container {
+    position: relative;
+    min-width: 300px;
+    min-height: 400px;
+    padding: 40px 30px 30px;
+    border-radius: 20px;
+    box-shadow: 25px 25px 75px rgba(0,0,0,0.25),
+        /*aは透明度で0-100%。rgbは0-255。*/
+        10px 10px 70px rgba(0,0,0,0.257743891274104170484021481), inset -5px -5px 15px rgba(0,0,0,0.25),
+        inset 5px 5px 15px rgba(0,0,0,0.25);
+/* 1つ目：外の遠い影（右下） */
+/* 2つ目：外の近い影（右下、強め） */
+/* 3つ目：内側の影（左上の凹み） */
+/* 4つ目：内側の影（右下の凹み） */
+}
+.container span {
+    color: #fff;
+    position: relative;
+    /*要素全体でなく、個別に位置を調整できる*/
+    display: grid;
+    width: 80px;
+    place-items: center;
+    margin: 8px;
+    height: 80px;
+    box-shadow: inset -8px 0 8px rgba(0,0,0,0.15),
+    inset 0 -8px 8px rgba(0,0,0,0.25),0 0 0 2px rgba(0,0,0,0.75),
+    10x 20px 25px rgba(0,0,0,0.4);
+    background: linear-gradient(180deg,#2f2f2f,#3f3f3f);
+    user-select: none;
+    cursor: pointer;
+    font-weight: 400;
+    border-radius: 10px;
+}
+.calculator span:active {
+    filter: brightness(1.5);
+}
+.container span:before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 5px;
+    bottom: 14px;
+    right: 12px;
+    border-radius: 10px;
+    background: linear-gradient(90deg,#2d2d2d,#4d4d4d);
+    box-shadow: -5px -5px 15px rgba(0,0,0,0.1),
+    10px 5px 10px rgba(0,0,0,0.15);
+    border-left: 1px solid #0004;
+    border-bottom: 1px solid #0004;
+    border-top: 1px solid #0009;
+
+    /*内側の影*/
+}
+.calculator span i {
+    position: relative;
+    font-style: normal;
+    /*<i>タグはもともと字が斜体*/
+    font-size: 1.5em;
+    text-transform: uppercase;
+}
+.calculator {
+    position: relative;
+    display: grid;
+    /*要素が←一列に並ぶ*/
+}
+.calculator .value {
+    position: relative;
+    grid-column: span 4;
+    /*4列分の幅を使う。この要素が親の.calculatorに影響を与えている。*/
+    height: 80px;
+    width: calc(100% - 20px);
+    /*calc()はCSS内で計算を実行する。*/
+    left: 10px;
+    border: none;
+    outline: none;
+    /*この二つで元の線を消す*/
+    background-color: #a7af7c;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 0 2px rgba(0,0,0,0.75);
+    /*1つ目の0：横方向のズレなし
+    2つ目の0：縦方向のズレなし
+    3つ目の0：ぼかしなし
+    4つ目の2px：影の広がり（= 枠線の太さ）*/
+    text-align: right;
+    /*右に合わせる*/
+    padding: 10px;
+    font-size: 2em;
+}
+.calculator .clear {
+    grid-column: span 2;
+    width: 180px;
+    background: #f00;
+}
+.calculator .clear::before {
+    background: linear-gradient(90deg,#d20000,#ffffff5c);
+    border-left: 1px solid #fff4;
+    border-bottom: 1px solid #fff4;
+    border-top: 1px solid #fff4;
+}
+.calculator .equal {
+    background: #2196f3;
+}
+.calculator .equal::before {
+    background: linear-gradient(90deg,#1479c9,#ffffff5c);
+    border-left: 1px solid #fff4;
+    border-bottom: 1px solid #fff4;
+    border-top: 1px solid #fff4;
+}
